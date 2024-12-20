@@ -18,11 +18,13 @@ function LeftSide() {
   const [product, setProduct] = useState(false); // Added for product collapsible
   const [productCategory, setProductCategory] = useState(false);
 
-  const { navVisible } = useContext(adminContext);
+  let {navVisible}=useContext(adminContext)
+
+ 
 
   return (
    <div className="  HeightFixed ">
-    <div className={navVisible ? "hidden" : "w-full bg-[#212631] min-h-[100vh]"}>
+    <div className="w-full bg-[#212631] min-h-[100vh]">
       <Link to="/dashboard">
         <div className="p-[16px] text-center text-white text-[24px] border-bottom cursor-pointer">
           Frank and Oak
@@ -30,16 +32,17 @@ function LeftSide() {
       </Link>
 
       <ul className="list-none w-auto m-[8px] text-[16px] text-white sideNav">
-        <NavItem to="/dashboard" icon={<BsSpeedometer2 />} label="Dashboard" isActive />
-        <NavItem to="/dashboard/profile" icon={<GoGear />} label="Profile" />
+        <NavItem to="/dashboard" icon={<BsSpeedometer2 />} label={!navVisible ? "Dashboard" : ""}  isActive />
+        <NavItem to="/dashboard/profile" icon={<GoGear />}  label={!navVisible ? "Profile" : ""} />
 
-        <div className="font-bold text-[#ffffff6a] text-center uppercase h-[40px] my-[5px] text-[13px] px-[12px] py-[10px]">
-          Ecommerce Components
-        </div>
-
+       
+        
         <Collapsible
-          title="Size"
-          icon={<MdOutlineTouchApp />}
+        
+        title={!navVisible ? "Size" : ""}
+         
+          icon={<MdOutlineTouchApp  />}
+          
           isOpen={size}
           setIsOpen={setSize}
           links={[
@@ -49,7 +52,8 @@ function LeftSide() {
         />
         
         <Collapsible
-          title="Color"
+          
+          title={!navVisible ? "Color" : ""}
           icon={<CiDroplet />}
           isOpen={color}
           setIsOpen={setColor}
@@ -60,7 +64,8 @@ function LeftSide() {
         />
         
         <Collapsible
-          title="Product"
+          
+          title={!navVisible ? "Product" : ""}
           icon={<BsBasket />}
           isOpen={product}
           setIsOpen={setProduct}
@@ -71,7 +76,8 @@ function LeftSide() {
         />
 
         <Collapsible
-          title="Parent Category"
+         title={!navVisible ? "Parent Category" : ""}
+          
           icon={<ImParagraphLeft />}
           isOpen={category}
           setIsOpen={setCategory}
@@ -82,7 +88,8 @@ function LeftSide() {
         />
         
         <Collapsible
-          title="Product Category"
+        title={!navVisible ? "Product Category" : ""}
+          
           icon={<LiaBabyCarriageSolid />}
           isOpen={productCategory}
           setIsOpen={setProductCategory}
